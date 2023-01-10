@@ -10,31 +10,28 @@ import math
 
 '''Theoretical Calculations'''
 # Exp. M4, M5, Pos Shock (all mm)
-#3A 15.0 10.0 - 630.0
-#4A 15.0 10.0 - 530.0
-#5A 15.0 10.0 - Second Throat
-#3B 18.0 10.0 - 630.0
-#4B 18.0 10.0 - 530.0
-#5B 18.0 10.0 - Second Throat
+# 3A 15.0 10.0 - 630.0
+# 4A 15.0 10.0 - 530.0
+# 5A 15.0 10.0 - Second Throat
+# 3B 18.0 10.0 - 630.0
+# 4B 18.0 10.0 - 530.0
+# 5B 18.0 10.0 - Second Throat
 
-
-#A
+# A
 hk2 = 14.6
 dhdx = 0.01692
 h0 = 8
 xshock = [630, 530, 410]
 
+# B
+# hk2 = 11.8
+# dhdx = 0.02472
+# h0 = 2.2
+# xshock = [630, 530, 410]
 
-
-#B
-#hk2 = 11.8
-#dhdx = 0.02472
-#h0 = 2.2
-#xshock = [630, 530, 410]
-
-#distance between two throats
+# distance between two throats
 length = 760-410
-#x step size in mm
+# x step size in mm
 step = 1
 x_list = []
 AAt_list = []
