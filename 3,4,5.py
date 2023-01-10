@@ -36,15 +36,14 @@ step = 10
 x_list = []
 AAt_list = []
 ppt_list = []
-Tppt_list = [[],[],[]]
-mach = []
+Tppt_list = [[], [], []]
 PPTNSW = []
 
 x = 410 
 AAt = h0/hk2
 
 for i in range(int(math.ceil(length/step))+1):   
-    AAt = (h0+ x*dhdx )/hk2
+    AAt = (h0 + x * dhdx)/hk2
     x_list.append(x)
     AAt_list.append(AAt)
     x += step
@@ -66,12 +65,12 @@ for j in range(3):
         mach = value[0]
         Tppt_list[j].append(float(value[2]))
 
+# Point calculations at shock locations (not in throat)
 
-#for i in range(len(x_list)): 
-#    value = flowtools.flownormalshock2(1.4, mach, "mach")
-#    mach = value[0]
-#    PPTNSW.append(value[2])
-#print(PPTNSW)
+# P3 max pressure ratio at subsonic (need area relation for that)
+# P6 min P ratio at supersonic
+# p5 pressure ratio after a normal shock at that location
+
 
 '''Measured pressure ratio (reading DATA)'''
 #Measured pressure ratio
