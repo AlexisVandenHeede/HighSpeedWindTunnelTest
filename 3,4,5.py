@@ -32,7 +32,7 @@ xshock = [630, 530, 410]
 # distance between two throats
 length = 760-410
 # x step size in mm
-step = 1
+step = 10
 x_list = []
 AAt_list = []
 ppt_list = []
@@ -51,21 +51,16 @@ for i in range(int(math.ceil(length/step))+1):
 
 # ppt calculations for all three experimetsn 3, 4, 5
 for j in range(3):
+    mach = 1
     for i in range(len(x_list)):
         if i*step + 410 < xshock[j]:
             value = flowtools.flowisentropic2(1.4, AAt_list[i], 'sup')
+        elif i*step + 410 == xshock[j]:
+            value = flowtools.flownormalshock2(1.4, mach, 'mach')
         else:
             value = flowtools.flowisentropic2(1.4, AAt_list[i], 'sub')
-        #mach[j].append(value[0])  
         Tppt_list[j].append(float(value[2]))
-m = 1
-for i in range(10):
-    mach.append(m)
-    m += 0.1
 
-for i in range(10):        
-    value = flowtools.flownormalshock2(1.4, mach[i], "mach")
-    PPTNSW.append(value[2])
 
 #for i in range(len(x_list)): 
 #    value = flowtools.flownormalshock2(1.4, mach, "mach")
@@ -97,8 +92,6 @@ plt.plot(x_list, Tppt_list[1], marker = 'o', markersize = 5, color = 'blue',
          markerfacecolor = 'none', markeredgecolor = 'blue')
 plt.plot(x_list, Tppt_list[2], marker = 'o', markersize = 5, color = 'red',
          markerfacecolor = 'none', markeredgecolor = 'red')
-plt.plot(x_list, PPTNSW, marker = 'o', markersize = 5, color = 'purple',
-         markerfacecolor = 'none', markeredgecolor = 'purple')
 plt.xlabel('x [mm]')
 plt.ylabel('A/A$_t$, P/p$_t$ [-]')
 plt.xlim(400,770)
