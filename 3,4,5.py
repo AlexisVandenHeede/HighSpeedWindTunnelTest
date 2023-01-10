@@ -49,16 +49,21 @@ for i in range(int(math.ceil(length/step))+1):
     AAt_list.append(AAt)
     x += step
 
-# ppt calculations for all three experimetsn 3, 4, 5
+# ppt calculations for all three experiment 3, 4, 5
 for j in range(3):
     mach = 1
     for i in range(len(x_list)):
         if i*step + 410 < xshock[j]:
             value = flowtools.flowisentropic2(1.4, AAt_list[i], 'sup')
         elif i*step + 410 == xshock[j]:
+            print("NSW")
             value = flowtools.flownormalshock2(1.4, mach, 'mach')
+            value = list(value)
+            value[2] = float(value[2])*float(value[6]) # this calculates (static P 2)/(total P 2) after NSW
+            print(value[2])
         else:
             value = flowtools.flowisentropic2(1.4, AAt_list[i], 'sub')
+        mach = value[0]
         Tppt_list[j].append(float(value[2]))
 
 
@@ -98,7 +103,7 @@ plt.xlim(400,770)
 plt.vlines(xshock[0],1,1.5, color = 'green', label = 'Theoretical Shock Wave 3')
 plt.vlines(xshock[1],1,1.5, color = 'blue', label = 'Theoretical Shock Wave 4')
 plt.vlines(xshock[2],1,1.5, color = 'red', label = 'Theoretical Shock Wave 5')
-plt.legend(["A/AT", "3 T P/PT", "4 T P/PT", "5 T P/PT", "P/PT NSW"])
+plt.legend(["A/AT", "3 T P/PT", "4 T P/PT", "5 T P/PT",])
 plt.grid()
 plt.show()
 
